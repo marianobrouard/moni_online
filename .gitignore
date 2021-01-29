@@ -1,0 +1,6 @@
+moni_online/prestamo/migrations/*
+prestamo/migrations/*
+
+
+secret.json
+moni_online/secret.json

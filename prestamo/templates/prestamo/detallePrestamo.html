@@ -1,0 +1,20 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="">
+    <h1 class="text-center">Detalle del prestamo</h1>
+    <div class="list-group mt-5">
+        <button type="button" class="list-group-item list-group-item-action active text-center" aria-current="true"><b>DNI :</b>{{prestamo.dni}}</button>
+        <button type="button" class="list-group-item list-group-item-action text-center"><b>Nombre: </b>{{prestamo.nombre}}</button>
+        <button type="button" class="list-group-item list-group-item-action text-center"><b>Apellido: </b>{{prestamo.apellido}}</button>
+        <button type="button" class="list-group-item list-group-item-action text-center"><b>Genero: </b>{{prestamo.genero}}</button>
+        <button type="button" class="list-group-item list-group-item-action text-center"><b>Email: </b>{{prestamo.email}}</button>
+        <button type="button" class="list-group-item list-group-item-action text-center"><b>Monto Solicitado: </b>{{prestamo.monto_solicitado}}</button>
+        <button type="button" class="list-group-item list-group-item-action text-center"><b>Estado: </b>{{prestamo.aprobado}}</button>
+    </div>
+    <center class="mt-5">
+        <a class="btn btn-success" href="{% url 'prestamo_app:listaPrestamos' %}" >Volver</a>
+    </center>
+</div>
+{% endblock content %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container p-4">
+    <form method="POST">{% csrf_token %}
+        {{form.as_p}}
+        <button class="btn btn-danger mt-3" type="submit">Editar prestamo</button>
+    </form>
+    <center class="mt-5">
+        <a class="btn btn-success" href="{% url 'prestamo_app:listaPrestamos' %}" >Volver</a>
+    </center>
+</div>
+{% endblock content %}

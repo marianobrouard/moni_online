@@ -1,0 +1,26 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container p-4">
+    <form method="POST">{% csrf_token %}
+        {{form.as_p}}
+        <button class="btn btn-success mt-3" type="submit">Solicitar prestamo</button>
+    </form>
+    
+    {% if error == True %}
+        <h1 class="alert alert-danger mt-3 text-center">Error de conexion sistema caido </h1>
+    {% else %}
+        {% if dni != "" and aprobado == "aprobado" %}
+            <h1 class="alert alert-success mt-3 text-center">Su prestamo fue {{aprobado}} </h1>
+            <p class="alert alert-success mt-3 text-center">DNI: {{dni}} - Nombre: {{nombre}} - Apellido: {{apellido}} - Monto solicitado: {{monto_solicitado}} - Estado: {{aprobado}}</p>
+        {% elif dni != "" and aprobado != "aprobado" %} 
+            <h1 class="alert alert-warning mt-3 text-center">Su prestamo fue {{aprobado}} </h1>
+            <p class="alert alert-warning mt-3 text-center">DNI: {{dni}} - Nombre: {{nombre}} - Apellido: {{apellido}} - Monto solicitado: {{monto_solicitado}} - Estado: {{aprobado}}</p>
+        {% endif %}
+    {% endif %}
+    <center class="mt-5">
+        <a class="btn btn-success" href="{% url 'prestamo_app:home' %}" >Volver</a>
+    </center>
+</div>
+{% endblock content %}

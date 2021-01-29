@@ -1,0 +1,64 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="align-items-center justify-content-center">
+    <div class="col-auto">
+        <h1 class="text-center mt-5"><strong>Lista de prestamos solicitados</strong></h1>
+        <table class="center table table-responsive table-hover">
+            <thead>
+                <tr>
+                    <th>Dni</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Monto Solicitado</th>
+                    <th>Estado</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            {% for prestamo in prestamos %}
+            <tr>
+                <td>{{ prestamo.dni }}</td>
+                <td>{{ prestamo.nombre }}</td>
+                <td>{{ prestamo.apellido }}</td>
+                <td>{{ prestamo.monto_solicitado }}</td>
+                <td>{{ prestamo.aprobado }}</td>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <td><a href="{% url 'prestamo_app:detallePrestamos' prestamo.dni %}" class="btn btn-info">Ver</a></td>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <td><a href="{% url 'prestamo_app:editarPrestamos' prestamo.dni %}" class="btn btn-info">Editar</a></td>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <td><a href="{% url 'prestamo_app:eliminarPrestamos' prestamo.dni %}" class="btn btn-danger"
+                    onClick="return confirm('¿Seguro que quieres borrar este mixer?');">Borrar</a></td>
+            </tr>
+            {% endfor %}
+            </tbody>
+      </table>
+    </div>
+</div>
+
+<nav aria-label="Page navigation example">
+    {% if is_paginated %}
+    <ul class="pagination justify-content-center mt-3">
+      {% if page_obj.has_previous %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{page_obj.previous_page_number}}" tabindex="-1">Anterior</a>
+        </li>
+      {% endif %}
+      {% for pagina in paginator.page_range %}   
+        <li class="page-item"><a class="page-link" href="?page={{pagina}}">{{ pagina }}</a></li>
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{page_obj.next_page_number}}">Siguiente</a>
+        </li>
+      {% endif %}
+    </ul>
+    {% endif %}
+</nav>
+
+
+{% endblock content %}
