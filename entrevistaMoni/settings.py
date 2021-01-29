@@ -33,7 +33,6 @@ def get_secret(secret_name, secrets=secret):
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = get_secret('SECRET_KEY')
-# @*@&_!g-6ey#&f=n2ua*e4qxnpl3(54ltadp7tz5u_fy08l&2_
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
